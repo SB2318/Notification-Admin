@@ -176,6 +176,53 @@
       });
     }
   });
+
+  $("#btn-send").click(function(){
+
+    // First we get the input value, receipents, titles and the body
+    var receipents= $("#users").val();
+    var title= $("#title").val();
+    var body= $("#body").val();
+
+    //create ajax request
+
+    $.ajax({
+
+      // It takes a json objects (We create Http Request with the help of Ajax)
+      type: 'POST',
+      // Here we pass the legacy http url (Migrate to HTTP V1 API -> Before url)
+      url: 'https://fcm.googleapis.com/fcm/send',
+     // we define the authorization headers
+     
+     headers:{
+        
+      //key= OUR_API_KEY, you will get it from firebase
+      Authorization : 'key=	AAAAanDeaS8:APA91bH7JkwqOWHi-Uy8uF2aQfPKdYtO76M3Cp-eUUhx3gpmN11kVGVyzOIZlgxFQpLR0oXFxtwP0TenHyJ8LrsVoLmJmZATV5NoqrBI8rfcCexflC6yvKfVaO2ocqsf73f5Gz78ZajA'
+
+     },
+     contentType: 'application/json',
+     dataType : 'json',
+     data: JSON.stringify({
+
+      "registration_ids": receipents,
+      "notifications":{
+
+        "title": title,
+        "body": body
+      }
+     }),
+
+     success: function(response){
+
+        alert("Sent to "+response.success + " Devices")
+     },
+
+     error: function(error){
+             
+          alert("Some error occures")
+     }
+    });
+  })
 </script>
 
 </body>
