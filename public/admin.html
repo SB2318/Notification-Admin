@@ -55,57 +55,10 @@
    </div>
 
    </nav>
-
-   <!--
-   <div class ="row h-100 bg-light">
-
-   
-      row h-100 and bg-light are bootstrap class
-  
-
-    <div class="col-lg-2 bg-secondary">
-
-      <ul class="nav flex-column">
-
-        <li class="nav-item">
-                  <a class="nav-link" href="#">
-
-                    <span class="text-dark">
-                      Notification
-                    </span>
-                  </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-
-            <span class="text-dark">
-             Category
-            </span>
-          </a>
-       </li>
-      </ul>
-    </div>
-
-    <div class="col-lg-10">
-
-
-      
-        This is bootstrap grid system, we have to learn it.
-    
-
-     <div class="container">
-
-      <h1>Notifications </h1>
-
-     </div>
-    </div>
-   </div>
-  -->
-  
-<div class="container">
+  <div class="container">
 
   <div class="row">
+    <div class="col-md-3">
     <div class="form-group">
 
       <label for="users">Select Users</label>
@@ -137,6 +90,7 @@
     </div>
   </div>
 </div>
+</div>
 
 
     <script type="module">
@@ -165,6 +119,7 @@
       const analytics = getAnalytics(app);
       const authe= getAuth(app);
 
+      /*
 
       document.getElementById("btn_login").addEventListener('click',function(){
 
@@ -188,6 +143,7 @@
       });
 
       })
+      */
 
     </script>
 
@@ -200,64 +156,27 @@
    const userRef= ref(database,"User")
    
    onValue(userRef, (snapshot)=>{
+    $("#users").empty();
 
-     // get users
-     //const data= snapshot.val();
-     // We have to display all the users inside the select box, so for this, first of all we
-     //have to empty all the users
-     document.getElementById("users").empty();
-
-     // If there is some data in the snapshot we will look through all the objects inside the 
-     //snapshot
-
+  // We will loop through all the values inside the snapshot
      if(snapshot.exists()){
 
-      snapshot.forEach(function(userSnapshot){
-         
-        // We have to create options for our select box
-        var html= "<option value='";
-        html+=userSnapshot.val().token;
-        html+="'>"
-        // for the display text we will display the user email
+       snapshot.forEach(function(userSnapshot){
 
-        html+=userSnapshot.val().email;
-        html+="</option>"
+             var html= "<option value='";
 
-        // We will append this html inside the select box
+            html+=userSnapshot.val().token;
+            html+="'>";
+            html+=userSnapshot.val().email;
+            html+="</option>"
 
-        document.getElementById("users").append(html);
-
+         // We will append this html inside the select box
+            $("#users").append(html);
+ 
       });
-     }
-
-
-   });
-
-   
+    }
+  });
 </script>
-
-<script>
-  
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
-
-  const auth = getAuth();
-   onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    const uid = user.uid;
-    // ...
-    // We will open the admin page that we want to display
-    window.location.href="index.html";
-    
-  } else {
-    // User is signed out
-    // ...
-  }
-});
-
-      </script>
-
 
 </body>
 </html>
