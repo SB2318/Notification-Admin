@@ -183,7 +183,8 @@
 
     //var $j = jQuery.noConflict();
     // First we get the input value, receipents, titles and the body
-    var receipents= $("#users").val();
+    //var receipents= $("#users").val();
+    var receipents= document.getElementById("users").value
     var title= $("#title").val();
     var body= $("#body").val();
 
@@ -199,19 +200,19 @@
      
      headers:{
         
-      //key= OUR_API_KEY, you will get it from firebase
-      Authorization : 'key=	AAAAanDeaS8:APA91bH7JkwqOWHi-Uy8uF2aQfPKdYtO76M3Cp-eUUhx3gpmN11kVGVyzOIZlgxFQpLR0oXFxtwP0TenHyJ8LrsVoLmJmZATV5NoqrBI8rfcCexflC6yvKfVaO2ocqsf73f5Gz78ZajA'
+      //key= WEB_API_KEY, you will get it from firebase
+      Authorization : 'key= AAAAanDeaS8:APA91bEskDpsK8oVm3ynEOpk9UWKgS4xSzVmMrOazctWPKvkgWdAcF1Ktibggxk4KKFa7tCrg9prm3-UPPxx0YYi19r-2BvEFG7-HmFWgX1EYrZOtC3fNGJ4WLpsV8L1Wv3HBvyPs2sd'
 
      },
      contentType: 'application/json',
      dataType : 'json',
      data: JSON.stringify({
 
-      "registration_ids": receipents,
-      "notifications":{
-
-        "title": title,
-        "body": body
+      //"to" : "eJ1nIGYhT1uIF1tvgAbG1m:APA91bGv4dLxF9Ts693CbljUdzvmtOoXJVAcX-D54RpA3D65etyc_Jc2bd_-kLRkqkUnD5Is672SM1jyr3Gj_7-FuXScnlQdK7ZcZ0NTEvzh3FQwt4osiUL4MYWyscMuj7ys3x9qFHhz",
+       "to": receipents,
+    "notification" : {
+     "body" : body,
+     "title": title
       }
      }),
 
@@ -223,7 +224,12 @@
      error: function(error){
              
           alert("Some error occures")
-     }
+     },
+
+     "content_available": true,
+    "priority": "high",
+     "direct_boot_ok" : true,
+     "to": receipents
     });
   })
 </script>
