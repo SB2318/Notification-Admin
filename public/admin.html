@@ -11,16 +11,18 @@
 
     <link rel="stylesheet" href="CSS/style.css"/>
 
-    <script type="module" src="https://code.jquery.com/jquery-3.6.1.slim.min.js" 
-    integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" 
-    crossorigin="anonymous">
-
+    <script type="module" src="https://code.jquery.com/jquery-3.6.1.min.js" 
+    >
     </script>
+
+
+ </script>
      
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" 
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
      crossorigin="anonymous"></script>
-    <title>Document</title>
+
+    <title>Notification Admin</title>
 
 </head>
 <body class="h-100">
@@ -176,6 +178,54 @@
       });
     }
   });
+
+  $("#btn-send").click(function(){
+
+    //var $j = jQuery.noConflict();
+    // First we get the input value, receipents, titles and the body
+    var receipents= $("#users").val();
+    var title= $("#title").val();
+    var body= $("#body").val();
+
+    //create ajax request
+
+    $.ajax({
+
+      // It takes a json objects (We create Http Request with the help of Ajax)
+      type: 'POST',
+      // Here we pass the legacy http url (Migrate to HTTP V1 API -> Before url)
+      url: 'https://fcm.googleapis.com/fcm/send',
+     // we define the authorization headers
+     
+     headers:{
+        
+      //key= OUR_API_KEY, you will get it from firebase
+      Authorization : 'key=	AAAAanDeaS8:APA91bH7JkwqOWHi-Uy8uF2aQfPKdYtO76M3Cp-eUUhx3gpmN11kVGVyzOIZlgxFQpLR0oXFxtwP0TenHyJ8LrsVoLmJmZATV5NoqrBI8rfcCexflC6yvKfVaO2ocqsf73f5Gz78ZajA'
+
+     },
+     contentType: 'application/json',
+     dataType : 'json',
+     data: JSON.stringify({
+
+      "registration_ids": receipents,
+      "notifications":{
+
+        "title": title,
+        "body": body
+      }
+     }),
+
+     success: function(response){
+
+        alert("Sent to "+response.success + " Devices")
+     },
+
+     error: function(error){
+             
+          alert("Some error occures")
+     }
+    });
+  })
 </script>
 
 </body>
