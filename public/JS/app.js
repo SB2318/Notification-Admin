@@ -11,14 +11,14 @@ import { getAuth, signInWithWithEmailAndPassword } from "https://www.gstatic.com
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAIBuKnGJnFcFvhu4CAzzanHQoLxvuqYOo",
-  authDomain: "androidnotification-7bbac.firebaseapp.com",
-  databaseURL: "https://androidnotification-7bbac-default-rtdb.firebaseio.com",
-  projectId: "androidnotification-7bbac",
-  storageBucket: "androidnotification-7bbac.appspot.com",
-  messagingSenderId: "457160157487",
-  appId: "1:457160157487:web:d38d80803f7ebe061a19da",
-  measurementId: "G-KVGMH4VKRM"
+  apiKey: "API_KEY",
+  authDomain: "AUTH_DOMAIN",
+  databaseURL: "DATABASE_URL",
+  projectId: "PROJECT_ID",
+  storageBucket: "STORAGE_BUCKET",
+  messagingSenderId: "SENDER_ID",
+  appId: "APP_ID",
+  measurementId: "MEASUREMENT_ID"
 };
 
 // Initialize Firebase
